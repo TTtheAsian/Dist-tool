@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <td>距離：</td>
-        <td><input type="text" id="distance" size="10"> 海里</td>
+        <td><input type="text" id="distance" size="10"> km</td>
       </tr>
       <tr>
         <td colspan="2"><button onclick="calculate()">計算</button></td>
@@ -38,7 +38,7 @@
         <td><input type="text" id="new_lon_deg" size="2">° <input type="text" id="new_lon_min" size="2">' <input type="text" id="new_lon_sec" size="2">'' E</td>
       </tr>
     </table>
-<script>
+    <script>
       function calculate() {
         var lat_deg = parseFloat(document.getElementById("lat_deg").value);
         var lat_min = parseFloat(document.getElementById("lat_min").value);
@@ -47,13 +47,14 @@
         var lon_min = parseFloat(document.getElementById("lon_min").value);
         var lon_sec = parseFloat(document.getElementById("lon_sec").value);
         var bearing = parseFloat(document.getElementById("bearing").value);
-        var distance = parseFloat(document.getElementById("distance").value);
+        var distance_km = parseFloat(document.getElementById("distance").value);
+        var distance_nm = distance_km / 1.852;
         var lat = lat_deg + lat_min/60 + lat_sec/3600;
         var lon = lon_deg + lon_min/60 + lon_sec/3600;
         var lat_r = lat * Math.PI/180;
         var lon_r = lon * Math.PI/180;
         var bearing_r = bearing * Math.PI/180;
-        var distance_r = distance / 1.852; // 1.852 is the number of kilometers in a nautical mile
+        var distance_r = distance_nm / 60 / 
         var new_lat_r = Math.asin(Math.sin(lat_r) * Math.cos(distance_r) + Math.cos(lat_r) * Math.sin(distance_r) * Math.cos(bearing_r));
         var new_lon_r = lon_r + Math.atan2(Math.sin(bearing_r) * Math.sin(distance_r) * Math.cos(lat_r), Math.cos(distance_r) - Math.sin(lat_r) * Math.sin(new_lat_r));
         var new_lat = new_lat_r * 180/Math.PI;
