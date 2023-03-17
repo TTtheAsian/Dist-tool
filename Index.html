@@ -54,7 +54,7 @@
         var lat_r = lat * Math.PI/180;
         var lon_r = lon * Math.PI/180;
         var bearing_r = bearing * Math.PI/180;
-        var distance_r = distance_nm / 60 / 
+        var distance_r = distance_nm / 60
         var new_lat_r = Math.asin(Math.sin(lat_r) * Math.cos(distance_r) + Math.cos(lat_r) * Math.sin(distance_r) * Math.cos(bearing_r));
         var new_lon_r = lon_r + Math.atan2(Math.sin(bearing_r) * Math.sin(distance_r) * Math.cos(lat_r), Math.cos(distance_r) - Math.sin(lat_r) * Math.sin(new_lat_r));
         var new_lat = new_lat_r * 180/Math.PI;
